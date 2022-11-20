@@ -101,7 +101,7 @@ Type=notify
 TimeoutStopSec=60
 Environment=GOMAXPROCS=2
 
-ExecStart=%h/bin/rclone mount ${remote}: %h/Stuff/Mount \\
+ExecStart=%h/bin/rclone mount ${remote}: %h/Stuff/Mount2 \\
   --config %h/.config/rclone/rclone.conf \\
   --use-mmap \\
   --dir-cache-time 1000h \\
@@ -110,7 +110,7 @@ ExecStart=%h/bin/rclone mount ${remote}: %h/Stuff/Mount \\
   --tpslimit 10
 
 StandardOutput=file:%h/scripts/rclone_vfs_mount.log
-ExecStop=/bin/fusermount -uz %h/Stuff/Mount
+ExecStop=/bin/fusermount -uz %h/Stuff/Mount2
 Restart=on-failure
 
 [Install]
@@ -122,7 +122,7 @@ cat <<EOF | tee "${HOME}/.config/systemd/user/mergerfs.service" >/dev/null
 Description = MergerFS Service
 After=rclone-vfs.service
 RequiresMountsFor=%h/Stuff/Local
-RequiresMountsFor=%h/Stuff/Mount
+RequiresMountsFor=%h/Stuff/Mount2
 
 [Service]
 Type=forking
