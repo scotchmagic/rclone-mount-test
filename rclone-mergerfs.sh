@@ -130,7 +130,7 @@ TimeoutStopSec=60
 ExecStart=%h/bin/mergerfs \\
     -o use_ino,func.getattr=newest,category.action=all \\
     -o category.create=ff,cache.files=auto-full,threads=8 \\
-    %h/Stuff/Local:%h/Stuff/Mount %h/MergerFS
+    %h/Stuff/Local:%h/Stuff/Mount2 %h/MergerFS
 
 StandardOutput=file:%h/scripts/mergerfs_mount.log
 ExecStop=/bin/fusermount -uz %h/MergerFS
